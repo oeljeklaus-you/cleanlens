@@ -15,7 +15,7 @@ So you can clean your Mac with confidence.
 
 ## Download
 
-👉 [Download latest version](你的release链接)
+👉 [Download latest version](https://github.com/oeljeklaus-you/cleanlens/releases/download/v0.1.0-beta/CleanLens.zip)
 
 ## First Launch
 
