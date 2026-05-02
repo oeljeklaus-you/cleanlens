@@ -26,7 +26,7 @@ struct ScanItemCard: View {
                 ))
                 .toggleStyle(.checkbox)
                 .labelsHidden()
-                .disabled(item.safetyLevel == .risky || isProLocked)
+                .disabled(item.safetyLevel == .risky || (!AppConfig.isPublicBeta && isProLocked))
                 .padding(.top, 2)
 
                 Button {
@@ -47,7 +47,7 @@ struct ScanItemCard: View {
 
                             SafetyBadge(safetyLevel: item.safetyLevel)
 
-                            if isProLocked {
+                            if !AppConfig.isPublicBeta, isProLocked {
                                 Label(Copy.Monetization.proRequired, systemImage: "lock.fill")
                                     .font(.caption.weight(.semibold))
                                     .foregroundStyle(.secondary)
@@ -55,9 +55,9 @@ struct ScanItemCard: View {
                                     .padding(.vertical, 4)
                                     .background(Color.secondary.opacity(0.08))
                                     .clipShape(Capsule())
-                                    .onTapGesture {
-                                        onLockedFeatureRequested()
-                                    }
+                                .onTapGesture {
+                                    onLockedFeatureRequested()
+                                }
                             }
 
                             if isHighlighted {

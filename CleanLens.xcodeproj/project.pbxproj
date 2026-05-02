@@ -22,6 +22,7 @@
 		0A000001000000000000000D /* ReviewCleanSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000001D /* ReviewCleanSheet.swift */; };
 		0A000001000000000000000E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000001E /* Assets.xcassets */; };
 		0A000001000000000000000F /* Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000001F /* Copy.swift */; };
+		0A0000010000000000000105 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000205 /* AppConfig.swift */; };
 		0A0000010000000000000101 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000201 /* AppState.swift */; };
 		0A0000010000000000000102 /* LicenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000202 /* LicenseService.swift */; };
 		0A0000010000000000000103 /* FeatureGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000203 /* FeatureGate.swift */; };
@@ -45,6 +46,7 @@
 		0A000001000000000000001D /* ReviewCleanSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCleanSheet.swift; sourceTree = "<group>"; };
 		0A000001000000000000001E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A000001000000000000001F /* Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copy.swift; sourceTree = "<group>"; };
+		0A0000010000000000000205 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		0A0000010000000000000201 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0A0000010000000000000202 /* LicenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseService.swift; sourceTree = "<group>"; };
 		0A0000010000000000000203 /* FeatureGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureGate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				0A0000010000000000000019 /* FileUtils.swift */,
 				0A000001000000000000001F /* Copy.swift */,
+				0A0000010000000000000205 /* AppConfig.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				0A000001000000000000000C /* ScanItemCard.swift in Sources */,
 				0A000001000000000000000D /* ReviewCleanSheet.swift in Sources */,
 				0A000001000000000000000F /* Copy.swift in Sources */,
+				0A0000010000000000000105 /* AppConfig.swift in Sources */,
 				0A0000010000000000000101 /* AppState.swift in Sources */,
 				0A0000010000000000000102 /* LicenseService.swift in Sources */,
 				0A0000010000000000000103 /* FeatureGate.swift in Sources */,
@@ -363,11 +367,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VJLG3TK33Z;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = CleanLens;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -379,6 +391,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.CleanLens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -388,11 +406,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VJLG3TK33Z;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = CleanLens;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -404,6 +430,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.CleanLens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

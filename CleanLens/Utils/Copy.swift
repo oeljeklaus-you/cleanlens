@@ -109,6 +109,7 @@ enum Copy {
         static let totalFound = "Total found"
         static let availableNow = "Available now"
         static let lockedPro = "Locked (Pro)"
+        static let itemsSelected = "Items selected"
     }
 
     enum Item {

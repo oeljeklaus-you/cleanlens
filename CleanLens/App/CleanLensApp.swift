@@ -14,7 +14,9 @@ struct CleanLensApp: App {
         }
         .windowStyle(.titleBar)
         .commands {
-            CleanLensCommands(appState: appState)
+            if !AppConfig.isPublicBeta {
+                CleanLensCommands(appState: appState)
+            }
         }
     }
 }

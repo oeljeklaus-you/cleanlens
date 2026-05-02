@@ -18,90 +18,94 @@ struct UpgradeSheet: View {
     ]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            VStack(alignment: .leading, spacing: 8) {
-                Label(Copy.Monetization.unlockTitle, systemImage: "lock.open.fill")
-                    .font(.title2.weight(.semibold))
+        if AppConfig.isPublicBeta {
+            EmptyView()
+        } else {
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Label(Copy.Monetization.unlockTitle, systemImage: "lock.open.fill")
+                        .font(.title2.weight(.semibold))
 
-                Text(message)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Why upgrade:")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
-
-                ForEach(reasons, id: \.self) { reason in
-                    Label(reason, systemImage: "circle.fill")
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.primary)
+                    Text(message)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
                 }
-            }
-            .padding(14)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(nsColor: .controlBackgroundColor).opacity(0.72))
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text(Copy.Monetization.licensePrompt)
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Why upgrade:")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
 
-                TextField(Copy.Monetization.licensePlaceholder, text: $licenseKey)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($isKeyFocused)
-                    .onSubmit {
+                    ForEach(reasons, id: \.self) { reason in
+                        Label(reason, systemImage: "circle.fill")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(.primary)
+                    }
+                }
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(nsColor: .controlBackgroundColor).opacity(0.72))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(Copy.Monetization.licensePrompt)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+
+                    TextField(Copy.Monetization.licensePlaceholder, text: $licenseKey)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($isKeyFocused)
+                        .onSubmit {
+                            activate()
+                        }
+
+                    if let errorMessage {
+                        Text(errorMessage)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.red)
+                    }
+                }
+
+                HStack {
+                    Button(Copy.Monetization.continueWithFree) {
+                        onContinueWithFree()
+                    }
+                    .keyboardShortcut(.cancelAction)
+
+                    Spacer()
+
+                    Button {
                         activate()
+                    } label: {
+                        if isActivating {
+                            ProgressView()
+                                .controlSize(.small)
+                                .frame(minWidth: 72)
+                        } else {
+                            Text(Copy.Monetization.activate)
+                                .frame(minWidth: 88)
+                        }
                     }
-
-                if let errorMessage {
-                    Text(errorMessage)
-                        .font(.caption.weight(.medium))
-                        .foregroundStyle(.red)
+                    .buttonStyle(.borderedProminent)
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(isActivating)
                 }
             }
-
-            HStack {
-                Button(Copy.Monetization.continueWithFree) {
-                    onContinueWithFree()
-                }
-                .keyboardShortcut(.cancelAction)
-
-                Spacer()
-
-                Button {
-                    activate()
-                } label: {
-                    if isActivating {
-                        ProgressView()
-                            .controlSize(.small)
-                            .frame(minWidth: 72)
-                    } else {
-                        Text(Copy.Monetization.activate)
-                            .frame(minWidth: 88)
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-                .keyboardShortcut(.defaultAction)
-                .disabled(isActivating)
-            }
-        }
-        .padding(24)
-        .frame(minWidth: 560)
-        .background(
-            LinearGradient(
-                colors: [
-                    Color(nsColor: .windowBackgroundColor),
-                    Color.accentColor.opacity(0.04)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
+            .padding(24)
+            .frame(minWidth: 560)
+            .background(
+                LinearGradient(
+                    colors: [
+                        Color(nsColor: .windowBackgroundColor),
+                        Color.accentColor.opacity(0.04)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
             )
-        )
-        .onAppear {
-            isKeyFocused = true
+            .onAppear {
+                isKeyFocused = true
+            }
         }
     }
 

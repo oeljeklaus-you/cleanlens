@@ -18,7 +18,8 @@ struct ContentView: View {
             SummaryView(
                 totalFound: viewModel.totalSize,
                 availableNow: viewModel.safeSize,
-                lockedPro: viewModel.lockedSize
+                lockedPro: viewModel.lockedSize,
+                itemsSelected: viewModel.selectedItemCount
             )
             .padding(.horizontal, 24)
             .padding(.top, 18)
@@ -54,18 +55,22 @@ struct ContentView: View {
             )
         }
         .sheet(item: Binding(
-            get: { appState.activeMonetizationSheet },
+            get: { AppConfig.isPublicBeta ? nil : appState.activeMonetizationSheet },
             set: { appState.activeMonetizationSheet = $0 }
         )) { sheet in
-            UpgradeSheet(
-                message: sheet.message,
-                onActivate: { key in
-                    await activateLicense(key: key)
-                },
-                onContinueWithFree: {
-                    appState.activeMonetizationSheet = nil
-                }
-            )
+            if AppConfig.isPublicBeta {
+                EmptyView()
+            } else {
+                UpgradeSheet(
+                    message: sheet.message,
+                    onActivate: { key in
+                        await activateLicense(key: key)
+                    },
+                    onContinueWithFree: {
+                        appState.activeMonetizationSheet = nil
+                    }
+                )
+            }
         }
         .alert(item: $activeDialog) { dialog in
             alert(for: dialog)
@@ -124,7 +129,7 @@ struct ContentView: View {
             .padding(.horizontal, 24)
             .padding(.top, 20)
 
-            if shouldShowProBanner {
+            if !AppConfig.isPublicBeta, shouldShowProBanner {
                 proBanner
                     .padding(.horizontal, 24)
             }
@@ -160,7 +165,9 @@ struct ContentView: View {
                             )
                         }
 
-                        developerCleanupSection
+                        if !AppConfig.isPublicBeta {
+                            developerCleanupSection
+                        }
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 18)
@@ -261,6 +268,10 @@ struct ContentView: View {
                 secondaryButton: .cancel(Text(Copy.Risk.secondaryButton))
             )
         case .message(let title, let message):
+            if AppConfig.isPublicBeta {
+                return Alert(title: Text(title), message: Text(message))
+            }
+
             return Alert(
                 title: Text(title),
                 message: Text(message),
@@ -445,6 +456,11 @@ struct ContentView: View {
     }
 
     private func handleSelectionChange(_ isSelected: Bool, for item: ScanItem) {
+        if AppConfig.isPublicBeta {
+            viewModel.setSelection(isSelected, for: item)
+            return
+        }
+
         let isLocked = item.safetyLevel == .caution && licenseService.isProUnlocked == false
 
         if isLocked {
@@ -464,6 +480,11 @@ struct ContentView: View {
     }
 
     private func handleReviewCleanTap() {
+        if AppConfig.isPublicBeta {
+            isShowingReviewSheet = true
+            return
+        }
+
         if requiresUpgradeForSelectedItems {
             appState.activeMonetizationSheet = .upgrade(message: Copy.Monetization.unlockMessage)
             return
@@ -473,6 +494,10 @@ struct ContentView: View {
     }
 
     private var requiresUpgradeForSelectedItems: Bool {
+        if AppConfig.isPublicBeta {
+            return false
+        }
+
         guard licenseService.isProUnlocked == false else {
             return false
         }
@@ -485,6 +510,10 @@ struct ContentView: View {
     }
 
     private func activateLicense(key: String) async -> String? {
+        guard AppConfig.isPublicBeta == false else {
+            return nil
+        }
+
         do {
             let unlocked = try await licenseService.activateLicense(key: key)
 

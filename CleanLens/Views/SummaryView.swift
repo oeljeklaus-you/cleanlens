@@ -4,6 +4,7 @@ struct SummaryView: View {
     let totalFound: Int64
     let availableNow: Int64
     let lockedPro: Int64
+    let itemsSelected: Int
 
     var body: some View {
         HStack(spacing: 14) {
@@ -21,17 +22,27 @@ struct SummaryView: View {
                 tint: .teal
             )
 
-            metricCell(
-                title: Copy.Summary.lockedPro,
-                value: FileUtils.formatBytes(lockedPro),
-                symbol: "lock.fill",
-                tint: .orange,
-                isEmphasized: true
-            )
+            if AppConfig.isPublicBeta {
+                metricCell(
+                    title: Copy.Summary.itemsSelected,
+                    value: "\(itemsSelected)",
+                    symbol: "list.bullet.rectangle",
+                    tint: .indigo
+                )
+            } else {
+                metricCell(
+                    title: Copy.Summary.lockedPro,
+                    value: FileUtils.formatBytes(lockedPro),
+                    symbol: "lock.fill",
+                    tint: .orange,
+                    isEmphasized: true
+                )
+            }
         }
         .animation(.easeInOut(duration: 0.22), value: totalFound)
         .animation(.easeInOut(duration: 0.22), value: availableNow)
         .animation(.easeInOut(duration: 0.22), value: lockedPro)
+        .animation(.easeInOut(duration: 0.22), value: itemsSelected)
     }
 
     private func metricCell(title: String, value: String, symbol: String, tint: Color, isEmphasized: Bool = false) -> some View {

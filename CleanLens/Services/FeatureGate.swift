@@ -10,6 +10,13 @@ enum Feature {
 enum FeatureGate {
     @MainActor
     static func isEnabled(_ feature: Feature) -> Bool {
+        if AppConfig.isPublicBeta {
+            switch feature {
+            case .cleanSafe, .cleanCaution, .batchClean, .developerClean:
+                return true
+            }
+        }
+
         switch feature {
         case .cleanSafe:
             return true
