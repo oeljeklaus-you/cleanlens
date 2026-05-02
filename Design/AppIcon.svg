@@ -1,0 +1,36 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="120" x2="850" y2="910" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F9CFB"/>
+      <stop offset="0.52" stop-color="#27C7C4"/>
+      <stop offset="1" stop-color="#62D29B"/>
+    </linearGradient>
+    <linearGradient id="folder" x1="266" y1="330" x2="750" y2="735" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FBFF"/>
+      <stop offset="1" stop-color="#DCEFF3"/>
+    </linearGradient>
+    <filter id="softShadow" x="80" y="90" width="880" height="860" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="26" stdDeviation="34" flood-color="#0C4A6E" flood-opacity="0.24"/>
+    </filter>
+    <filter id="objectShadow" x="150" y="210" width="730" height="650" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0F3B4B" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect x="88" y="88" width="848" height="848" rx="190" fill="url(#bg)" filter="url(#softShadow)"/>
+  <path d="M176 686C260 789 412 841 558 803C700 766 812 644 834 504C793 672 641 774 472 746C342 724 234 641 176 686Z" fill="white" opacity="0.14"/>
+
+  <g filter="url(#objectShadow)">
+    <path d="M251 361C251 330.1 276.1 305 307 305H442C461.7 305 479.9 315.4 489.9 332.3L512 370H724C754.9 370 780 395.1 780 426V683C780 713.9 754.9 739 724 739H307C276.1 739 251 713.9 251 683V361Z" fill="url(#folder)"/>
+    <path d="M276 394H755V686C755 701.5 742.5 714 727 714H304C288.5 714 276 701.5 276 686V394Z" fill="#F8FCFF"/>
+    <path d="M251 410H780V685C780 714.8 755.8 739 726 739H305C275.2 739 251 714.8 251 685V410Z" fill="url(#folder)"/>
+  </g>
+
+  <circle cx="463" cy="489" r="138" fill="white" fill-opacity="0.34" stroke="#F7FFFF" stroke-width="34"/>
+  <circle cx="463" cy="489" r="101" fill="#E9FAFD" fill-opacity="0.34" stroke="#176C83" stroke-opacity="0.2" stroke-width="8"/>
+  <path d="M560 591L704 735" stroke="#F8FFFF" stroke-width="54" stroke-linecap="round"/>
+  <path d="M560 591L704 735" stroke="#126B82" stroke-opacity="0.22" stroke-width="22" stroke-linecap="round"/>
+
+  <path d="M690 478L781 514V584C781 660 739 716 690 736C641 716 599 660 599 584V514L690 478Z" fill="#1FBFA5" stroke="#F8FFFF" stroke-width="22" stroke-linejoin="round"/>
+  <path d="M648 594L680 626L735 559" stroke="white" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
